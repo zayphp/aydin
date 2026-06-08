@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FOIZ | Kalkulator</title>
+
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", sans-serif;
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      color: white;
+      padding: 10px;
+    }
+
+    .wrapper {
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .card {
+      padding: 20px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+      text-align: center;
+      margin-bottom: 15px;
+    }
+
+    h2 {
+      margin-bottom: 15px;
+      font-size: 18px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 16px;
+      font-size: 18px;
+      border-radius: 10px;
+      border: none;
+      outline: none;
+      text-align: center;
+      background: #0f172a;
+      color: white;
+      margin-bottom: 10px;
+    }
+
+    input:focus, select:focus {
+      box-shadow: 0 0 8px #22c55e;
+    }
+
+    .result {
+      margin-top: 8px;
+      padding: 15px;
+      font-size: 18px;
+      font-weight: bold;
+      border-radius: 10px;
+      white-space: pre-line;
+    }
+
+    .minus { background: linear-gradient(135deg, #22c55e, #16a34a); }
+    .plus { background: linear-gradient(135deg, #3b82f6, #2563eb); }
+
+    .refresh-btn {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 10px;
+      border: none;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #ef4444, #dc2626);
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .pubg-btn {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border: none;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #f59e0b, #d97706);
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .group { margin-bottom: 18px; }
+
+    /* MODAL */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.8);
+      justify-content: center;
+      align-items: center;
+      padding: 10px;
+    }
+
+    .modal-content {
+      width: 100%;
+      max-width: 450px;
+      background: #0f172a;
+      padding: 15px;
+      border-radius: 16px;
+    }
+
+    .close-btn {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: none;
+      border-radius: 10px;
+      background: #ef4444;
+      color: white;
+      cursor: pointer;
+      font-size: 15px;
+    }
+
+    .clear-btn {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: none;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #22c55e, #16a34a);
+      color: white;
+      cursor: pointer;
+      font-size: 15px;
+    }
+
+  </style>
+</head>
+
+<body>
+
+<div class="wrapper">
+
+  <button class="refresh-btn" onclick="yangilash()">🔄 Tozalash</button>
+  <button class="pubg-btn" onclick="ochPubg()">🎮 PUBG UC Narxlar</button>
+
+  <!-- AYIRISH -->
+  <div class="card">
+    <h2>💸 Foiz Ayirish</h2>
+
+    <select id="minusPercent" onchange="hisoblaMinus()">
+      <option value="1">1%</option>
+      <option value="2">2%</option>
+      <option value="3" selected>3%</option>
+      <option value="4">4%</option>
+      <option value="5">5%</option>
+    </select>
+
+    <input type="number" id="inputMinus" placeholder="Summa kiriting" oninput="hisoblaMinus()">
+
+    <div class="result minus" id="natijaMinus">0 so'm</div>
+  </div>
+
+  <!-- QO‘SHISH -->
+  <div class="card">
+    <h2>📈 Foiz Qo‘shish</h2>
+
+    <select id="plusPercent" onchange="hisoblaPlus()">
+      <option value="1">1%</option>
+      <option value="2">2%</option>
+      <option value="3" selected>3%</option>
+      <option value="4">4%</option>
+      <option value="5">5%</option>
+    </select>
+
+    <input type="number" id="inputPlus" placeholder="Summa kiriting" oninput="hisoblaPlus()">
+
+    <div class="result plus" id="natijaPlus">0 so'm</div>
+  </div>
+
+</div>
+
+<!-- PUBG MODAL -->
+<div id="pubgModal" class="modal">
+  <div class="modal-content">
+
+    <button class="close-btn" onclick="yopPubg()">✖ Yopish</button>
+    <button class="clear-btn" onclick="pubgTozalash()">🧹 Tozalash</button>
+
+    <div class="card">
+      <h2>🎮 PUBG UC Kalkulyator</h2>
+
+      <div class="group">
+        <input type="number" id="inputPul" placeholder="So'm kiriting" oninput="hisoblaPul()">
+        <div class="result plus" id="natijaPul">Natija chiqadi</div>
+      </div>
+
+      <div class="group">
+        <input type="number" id="inputUC" placeholder="UC kiriting" oninput="hisoblaUC()">
+        <div class="result minus" id="natijaUC">Natija chiqadi</div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<script>
+
+
+function hisoblaMinus() {
+
+  let A = Number(
+    document.getElementById("inputMinus").value
+  );
+
+  let percent = Number(
+    document.getElementById("minusPercent").value
+  );
+
+  if (A > 0) {
+
+    let result =
+      A / ((100 + percent) / 100);
+
+    result = Math.floor(result);
+
+    document.getElementById("natijaMinus").innerText =
+      result.toLocaleString() + " so'm";
+
+  } else {
+
+    document.getElementById("natijaMinus").innerText =
+      "0 so'm";
+
+  }
+
+}
+
+function hisoblaPlus() {
+
+  let A = parseFloat(
+    document.getElementById("inputPlus").value
+  );
+
+  let percent = parseFloat(
+    document.getElementById("plusPercent").value
+  );
+
+  if (A > 0) {
+
+    let result = A * (1 + percent / 100);
+
+    document.getElementById("natijaPlus").innerText =
+      Math.round(result).toLocaleString() + " so'm";
+
+  } else {
+
+    document.getElementById("natijaPlus").innerText =
+      "0 so'm";
+
+  }
+
+}
+
+/* PUBG data */
+const paketlar = [
+  { uc: 32400, narx: 4700000 },
+  { uc: 24300, narx: 3520000 },
+  { uc: 16200, narx: 2350000 },
+  { uc: 8100, narx: 1180000 },
+  { uc: 3850, narx: 590000 },
+  { uc: 1800, narx: 297000 },
+  { uc: 660, narx: 120000 },
+  { uc: 325, narx: 60000 },
+  { uc: 60, narx: 13000 },
+  { uc: 30, narx: 7000 }
+];
+
+function hisoblaPul() {
+  let pul = parseInt(document.getElementById("inputPul").value);
+
+  if (!pul || pul <= 0) {
+    document.getElementById("natijaPul").innerText = "Natija chiqadi";
+    return;
+  }
+
+  let qolgan = pul;
+  let natija = "";
+  let jamiUC = 0;
+
+  for (let p of paketlar) {
+    let soni = Math.floor(qolgan / p.narx);
+
+    if (soni > 0) {
+      natija += `${p.uc} UC → ${soni} ta\n`;
+      qolgan -= soni * p.narx;
+      jamiUC += soni * p.uc;
+    }
+  }
+
+  document.getElementById("natijaPul").innerText =
+    `Jami UC: ${jamiUC}\nQoldiq: ${qolgan.toLocaleString()} so'm\n\n${natija}`;
+}
+
+function hisoblaUC() {
+  let uc = parseInt(document.getElementById("inputUC").value);
+
+  if (!uc || uc <= 0) {
+    document.getElementById("natijaUC").innerText = "Natija chiqadi";
+    return;
+  }
+
+  let qolgan = uc;
+  let natija = "";
+  let jamiPul = 0;
+
+  for (let p of paketlar) {
+    let soni = Math.floor(qolgan / p.uc);
+
+    if (soni > 0) {
+      natija += `${p.uc} UC → ${soni} ta\n`;
+      qolgan -= soni * p.uc;
+      jamiPul += soni * p.narx;
+    }
+  }
+
+  document.getElementById("natijaUC").innerText =
+    `Jami: ${jamiPul.toLocaleString()} so'm\nQoldiq UC: ${qolgan}\n\n${natija}`;
+}
+
+/* MODAL */
+function ochPubg() {
+  document.getElementById("pubgModal").style.display = "flex";
+}
+
+function yopPubg() {
+  document.getElementById("pubgModal").style.display = "none";
+}
+
+function pubgTozalash() {
+  document.getElementById("inputPul").value = "";
+  document.getElementById("inputUC").value = "";
+
+  document.getElementById("natijaPul").innerText = "Natija chiqadi";
+  document.getElementById("natijaUC").innerText = "Natija chiqadi";
+}
+function yangilash() {
+
+  /* INPUTLARNI TOZALASH */
+  document.querySelectorAll("input").forEach(input => {
+    input.value = "";
+  });
+
+  /* SELECTLARNI DEFAULT HOLATGA QAYTARISH */
+  document.getElementById("minusPercent").value = "3";
+  document.getElementById("plusPercent").value = "3";
+
+  /* NATIJALARNI TOZALASH */
+  document.getElementById("natijaMinus").innerText =
+    "0 so'm";
+
+  document.getElementById("natijaPlus").innerText =
+    "0 so'm";
+
+  document.getElementById("natijaPul").innerText =
+    "Natija chiqadi";
+
+  document.getElementById("natijaUC").innerText =
+    "Natija chiqadi";
+
+}
+
+</script>
+
+</body>
+</html>
