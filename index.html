@@ -93,6 +93,30 @@
       cursor: pointer;
     }
 
+    .operator-box {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    .operator-box button {
+      width: 50%;
+      padding: 12px;
+      border: none;
+      border-radius: 12px;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .uzmobile-btn {
+      background: linear-gradient(135deg,#2563eb,#1d4ed8);
+    }
+
+    .ucell-btn {
+      background: linear-gradient(135deg,#a855f7,#7e22ce);
+    }
+
     .group { margin-bottom: 18px; }
 
     /* MODAL */
@@ -149,6 +173,11 @@
 
   <button class="refresh-btn" onclick="yangilash()">🔄 Tozalash</button>
   <button class="pubg-btn" onclick="ochPubg()">🎮 PUBG UC Narxlar</button>
+
+<div class="operator-box">
+<button class="uzmobile-btn" onclick="ochUzmobile()">📱 Uzmobile</button>
+<button class="ucell-btn" onclick="ochUcell()">📱 Ucell</button>
+</div>
 
   <!-- AYIRISH -->
   <div class="card">
@@ -375,6 +404,14 @@ function yangilash() {
   document.getElementById("natijaUC").innerText =
     "Natija chiqadi";
 
+}
+
+function ochUzmobile() {
+  window.open("https://uztelecom.uz/uz/jismoniy-shaxslarga/tarif-rejalar/#gsm", "_blank");
+}
+
+function ochUcell() {
+  window.open("https://ucell.uz/uz?%241%3F=", "_blank");
 }
 
 </script>
