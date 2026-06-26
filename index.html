@@ -94,13 +94,14 @@
     }
 
     .operator-box {
-      display: flex;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
       gap: 10px;
       margin-bottom: 15px;
     }
 
     .operator-box button {
-      width: 50%;
+      width: 100%;
       padding: 12px;
       border: none;
       border-radius: 12px;
@@ -115,6 +116,14 @@
 
     .ucell-btn {
       background: linear-gradient(135deg,#a855f7,#7e22ce);
+    }
+
+    .beeline-btn {
+      background: linear-gradient(135deg,#facc15,#eab308);
+    }
+
+    .mobiuz-btn {
+      background: linear-gradient(135deg,#f97316,#ea580c);
     }
 
     .group { margin-bottom: 18px; }
@@ -177,6 +186,8 @@
 <div class="operator-box">
 <button class="uzmobile-btn" onclick="ochUzmobile()">📱 Uzmobile</button>
 <button class="ucell-btn" onclick="ochUcell()">📱 Ucell</button>
+<button class="beeline-btn" onclick="ochBeeline()">📱 Beeline</button>
+<button class="mobiuz-btn" onclick="ochMobiuz()">📱 Mobiuz</button>
 </div>
 
   <!-- AYIRISH -->
@@ -411,7 +422,15 @@ function ochUzmobile() {
 }
 
 function ochUcell() {
-  window.open("https://ucell.uz/uz?%241%3F=", "_blank");
+  window.open("https://ucell.uz/uz/tariffs", "_blank");
+}
+
+function ochBeeline() {
+  window.open("https://beeline.uz/uz/products/tariffs", "_blank");
+}
+
+function ochMobiuz() {
+  window.open("https://mobi.uz/uz/tariff/", "_blank");
 }
 
 </script>
