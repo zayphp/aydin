@@ -1,1601 +1,1627 @@
 <!DOCTYPE html>
 <html lang="uz">
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>FOIZ | Kalkulator</title>
 
+
     <style>
 
-        /* =========================================================
-           1. ASOSIY SOZLAMALAR
-        ========================================================= */
+/* =========================================================
+   1. ASOSIY SOZLAMALAR
+========================================================= */
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
-        :root {
-            --bg: #060912;
-            --bg2: #0b1220;
-            --card: #101827;
-            --card-light: #151f31;
 
-            --border: rgba(255,255,255,.08);
+:root {
 
-            --white: #f8fafc;
-            --muted: #94a3b8;
+    --bg: #060912;
+    --bg2: #0b1220;
+    --card: #101827;
+    --card-light: #151f31;
 
-            --gold: #f5b942;
-            --gold2: #d89418;
+    --border: rgba(255,255,255,.08);
 
-            --green: #22c55e;
-            --green-dark: #15803d;
+    --white: #f8fafc;
+    --muted: #94a3b8;
 
-            --blue: #3b82f6;
-            --blue-dark: #1d4ed8;
+    --gold: #f5b942;
+    --gold2: #d89418;
 
-            --red: #ef4444;
+    --green: #22c55e;
+    --green-dark: #15803d;
 
-            --purple: #a855f7;
+    --blue: #3b82f6;
+    --blue-dark: #1d4ed8;
 
-            --orange: #f97316;
-        }
+    --red: #ef4444;
 
+    --purple: #a855f7;
 
-        /* =========================================================
-           2. BODY
-        ========================================================= */
+    --orange: #f97316;
+}
 
-        body {
-            min-height: 100vh;
 
-            font-family: "Segoe UI", Arial, sans-serif;
+/* =========================================================
+   2. BODY
+========================================================= */
 
-            color: var(--white);
+body {
 
-            background:
-                radial-gradient(
-                    circle at 5% 5%,
-                    rgba(245,185,66,.12),
-                    transparent 25%
-                ),
+    min-height: 100vh;
 
-                radial-gradient(
-                    circle at 95% 10%,
-                    rgba(59,130,246,.12),
-                    transparent 25%
-                ),
+    font-family:
+        "Segoe UI",
+        Arial,
+        sans-serif;
 
-                radial-gradient(
-                    circle at 50% 100%,
-                    rgba(168,85,247,.08),
-                    transparent 30%
-                ),
+    color: var(--white);
 
-                linear-gradient(
-                    135deg,
-                    #04070e,
-                    #0a111f 50%,
-                    #050811
-                );
+    background:
 
-            padding: 24px;
-        }
+        radial-gradient(
+            circle at 5% 5%,
+            rgba(245,185,66,.12),
+            transparent 25%
+        ),
 
+        radial-gradient(
+            circle at 95% 10%,
+            rgba(59,130,246,.12),
+            transparent 25%
+        ),
 
-        /* =========================================================
-           3. ASOSIY CONTAINER
-        ========================================================= */
+        radial-gradient(
+            circle at 50% 100%,
+            rgba(168,85,247,.08),
+            transparent 30%
+        ),
 
-        .wrapper {
-            width: 100%;
-            max-width: 1350px;
-            margin: auto;
-        }
+        linear-gradient(
+            135deg,
+            #04070e,
+            #0a111f 50%,
+            #050811
+        );
 
+    padding: 24px;
+}
 
-        /* =========================================================
-           4. HEADER
-        ========================================================= */
 
-        .header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+/* =========================================================
+   3. ASOSIY CONTAINER
+========================================================= */
 
-            gap: 20px;
+.wrapper {
 
-            margin-bottom: 22px;
-            padding: 20px 24px;
+    width: 100%;
 
-            border-radius: 22px;
+    max-width: 1350px;
 
-            background:
-                linear-gradient(
-                    145deg,
-                    rgba(255,255,255,.055),
-                    rgba(255,255,255,.025)
-                );
+    margin: auto;
+}
 
-            border: 1px solid var(--border);
 
-            box-shadow:
-                0 15px 40px rgba(0,0,0,.22);
+/* =========================================================
+   4. HEADER
+========================================================= */
 
-            backdrop-filter: blur(15px);
-        }
+.header {
 
+    display: flex;
 
-        /* =========================================================
-           5. LOGO VA BRAND
-        ========================================================= */
+    align-items: center;
 
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-        }
+    justify-content: space-between;
 
-        .logo {
-            width: 58px;
-            height: 58px;
+    gap: 20px;
 
-            display: flex;
-            align-items: center;
-            justify-content: center;
+    margin-bottom: 22px;
 
-            border-radius: 17px;
+    padding: 20px 24px;
 
-            background:
-                linear-gradient(
-                    135deg,
-                    var(--gold),
-                    var(--gold2)
-                );
+    border-radius: 22px;
 
-            color: #17100a;
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.055),
+            rgba(255,255,255,.025)
+        );
 
-            font-size: 29px;
-            font-weight: 900;
+    border: 1px solid var(--border);
 
-            box-shadow:
-                0 10px 30px rgba(245,185,66,.18),
-                inset 0 1px 0 rgba(255,255,255,.45);
-        }
+    box-shadow:
+        0 15px 40px rgba(0,0,0,.22);
 
-        .brand-text h1 {
-            font-size: 26px;
-            letter-spacing: 2px;
-        }
+    backdrop-filter: blur(15px);
+}
 
-        .brand-text p {
-            margin-top: 3px;
-            color: var(--muted);
-            font-size: 13px;
-        }
 
+/* =========================================================
+   5. LOGO
+========================================================= */
 
-        /* =========================================================
-           6. HEADER BUTTONS
-        ========================================================= */
+.brand {
 
-        .header-actions {
-            display: flex;
-            gap: 10px;
-        }
+    display: flex;
 
-        .action-btn {
-            height: 48px;
+    align-items: center;
 
-            padding: 0 20px;
+    gap: 14px;
+}
 
-            border: none;
-            border-radius: 14px;
 
-            color: white;
+.logo {
 
-            font-size: 14px;
-            font-weight: 700;
+    width: 58px;
 
-            cursor: pointer;
+    height: 58px;
 
-            transition: .2s;
+    display: flex;
 
-            border: 1px solid rgba(255,255,255,.08);
-        }
+    align-items: center;
 
-        .action-btn:hover {
-            transform: translateY(-2px);
-            filter: brightness(1.08);
-        }
+    justify-content: center;
 
-        .action-btn:active {
-            transform: scale(.96);
-        }
+    border-radius: 17px;
 
-        .reset {
-            background:
-                linear-gradient(
-                    135deg,
-                    #ef4444,
-                    #b91c1c
-                );
-        }
+    background:
+        linear-gradient(
+            135deg,
+            var(--gold),
+            var(--gold2)
+        );
 
-        .pubg {
-            background:
-                linear-gradient(
-                    135deg,
-                    #f5b942,
-                    #b96f05
-                );
-        }
+    color: #17100a;
 
+    font-size: 29px;
 
-        /* =========================================================
-           7. MAIN GRID
-        ========================================================= */
+    font-weight: 900;
 
-        .main-grid {
-            display: grid;
+    box-shadow:
+        0 10px 30px rgba(245,185,66,.18),
+        inset 0 1px 0 rgba(255,255,255,.45);
+}
 
-            grid-template-columns:
-                minmax(0,1.05fr)
-                minmax(0,1.05fr)
-                330px;
 
-            gap: 18px;
+.brand-text h1 {
 
-            align-items: start;
-        }
+    font-size: 26px;
 
+    letter-spacing: 2px;
+}
 
-        /* =========================================================
-           8. SECTION LABEL
-        ========================================================= */
 
-        .section-label {
-            display: flex;
-            align-items: center;
+.brand-text p {
 
-            gap: 8px;
+    margin-top: 3px;
 
-            margin: 0 0 10px 4px;
+    color: var(--muted);
 
-            color: #cbd5e1;
+    font-size: 13px;
+}
 
-            font-size: 13px;
-            font-weight: 700;
 
-            text-transform: uppercase;
+/* =========================================================
+   6. HEADER BUTTONS
+========================================================= */
 
-            letter-spacing: .5px;
-        }
+.header-actions {
 
+    display: flex;
 
-        /* =========================================================
-           9. CARD
-        ========================================================= */
+    gap: 10px;
+}
 
-        .card {
-            position: relative;
-            overflow: hidden;
 
-            padding: 22px;
+.action-btn {
 
-            border-radius: 22px;
+    height: 48px;
 
-            background:
-                linear-gradient(
-                    145deg,
-                    rgba(255,255,255,.055),
-                    rgba(255,255,255,.025)
-                );
+    padding: 0 20px;
 
-            border: 1px solid var(--border);
+    border: none;
 
-            box-shadow:
-                0 15px 40px rgba(0,0,0,.23),
-                inset 0 1px 0 rgba(255,255,255,.035);
+    border-radius: 14px;
 
-            backdrop-filter: blur(15px);
-        }
+    color: white;
 
-        .card::before {
-            content: "";
+    font-size: 14px;
 
-            position: absolute;
+    font-weight: 700;
 
-            top: 0;
-            left: 0;
+    cursor: pointer;
 
-            width: 100%;
-            height: 2px;
+    transition: .2s;
 
-            background:
-                linear-gradient(
-                    90deg,
-                    transparent,
-                    rgba(255,255,255,.18),
-                    transparent
-                );
-        }
+    border: 1px solid rgba(255,255,255,.08);
+}
 
 
-        /* =========================================================
-           10. CARD HEADER
-        ========================================================= */
+.action-btn:hover {
 
-        .card-header {
-            display: flex;
-            align-items: center;
+    transform: translateY(-2px);
 
-            gap: 12px;
+    filter: brightness(1.08);
+}
 
-            margin-bottom: 20px;
-        }
 
-        .card-icon {
-            width: 46px;
-            height: 46px;
+.action-btn:active {
 
-            flex-shrink: 0;
+    transform: scale(.96);
+}
 
-            display: flex;
-            align-items: center;
-            justify-content: center;
 
-            border-radius: 14px;
+.reset {
 
-            font-size: 21px;
-        }
+    background:
+        linear-gradient(
+            135deg,
+            #ef4444,
+            #b91c1c
+        );
+}
 
-        .minus-icon {
-            background: rgba(34,197,94,.12);
-            border: 1px solid rgba(34,197,94,.16);
-        }
 
-        .plus-icon {
-            background: rgba(59,130,246,.12);
-            border: 1px solid rgba(59,130,246,.16);
-        }
+.pubg {
 
-        .card-title h2 {
-            font-size: 17px;
-        }
+    background:
+        linear-gradient(
+            135deg,
+            #f5b942,
+            #b96f05
+        );
+}
 
-        .card-title p {
-            margin-top: 4px;
 
-            color: var(--muted);
+/* =========================================================
+   7. MAIN GRID
+========================================================= */
 
-            font-size: 12px;
-        }
+.main-grid {
 
+    display: grid;
 
-        /* =========================================================
-           11. INPUT VA SELECT
-        ========================================================= */
+    grid-template-columns:
+        minmax(0,1.05fr)
+        minmax(0,1.05fr)
+        330px;
 
-        .field-label {
-            margin: 0 0 7px 2px;
+    gap: 18px;
 
-            color: var(--muted);
+    align-items: start;
+}
 
-            font-size: 12px;
-        }
 
-        input,
-        select {
-            width: 100%;
-            height: 54px;
+/* =========================================================
+   8. SECTION LABEL
+========================================================= */
 
-            padding: 0 15px;
+.section-label {
 
-            border-radius: 14px;
+    display: flex;
 
-            border: 1px solid rgba(255,255,255,.07);
+    align-items: center;
 
-            outline: none;
+    gap: 8px;
 
-            background: #080e1a;
+    margin: 0 0 10px 4px;
 
-            color: white;
+    color: #cbd5e1;
 
-            font-size: 16px;
+    font-size: 13px;
 
-            transition: .2s;
-        }
+    font-weight: 700;
 
-        input {
-            margin-bottom: 13px;
-        }
+    text-transform: uppercase;
 
-        input::placeholder {
-            color: #64748b;
-        }
+    letter-spacing: .5px;
+}
 
-        input:focus,
-        select:focus {
-            border-color: rgba(245,185,66,.55);
 
-            box-shadow:
-                0 0 0 3px rgba(245,185,66,.08);
-        }
+/* =========================================================
+   9. CARD
+========================================================= */
 
-        select {
-            margin-bottom: 13px;
-            cursor: pointer;
-        }
+.card {
 
+    position: relative;
 
-        /* =========================================================
-           12. RESULT
-        ========================================================= */
+    overflow: hidden;
 
-        .result {
-            min-height: 62px;
+    padding: 22px;
 
-            display: flex;
-            align-items: center;
-            justify-content: center;
+    border-radius: 22px;
 
-            padding: 12px;
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.055),
+            rgba(255,255,255,.025)
+        );
 
-            border-radius: 15px;
+    border: 1px solid var(--border);
 
-            text-align: center;
+    box-shadow:
+        0 15px 40px rgba(0,0,0,.23),
+        inset 0 1px 0 rgba(255,255,255,.035);
 
-            white-space: pre-line;
+    backdrop-filter: blur(15px);
+}
 
-            font-size: 18px;
-            font-weight: 800;
 
-            border: 1px solid rgba(255,255,255,.06);
-        }
+.card::before {
 
-        .result.minus {
-            color: #86efac;
+    content: "";
 
-            background:
-                linear-gradient(
-                    135deg,
-                    rgba(34,197,94,.17),
-                    rgba(22,163,74,.06)
-                );
-        }
+    position: absolute;
 
-        .result.plus {
-            color: #93c5fd;
+    top: 0;
 
-            background:
-                linear-gradient(
-                    135deg,
-                    rgba(59,130,246,.17),
-                    rgba(37,99,235,.06)
-                );
-        }
+    left: 0;
 
+    width: 100%;
 
-        /* =========================================================
-           13. OPERATOR PANEL
-        ========================================================= */
+    height: 2px;
 
-        .operator-panel {
-            padding: 18px;
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.18),
+            transparent
+        );
+}
 
-            border-radius: 22px;
 
-            background:
-                linear-gradient(
-                    145deg,
-                    rgba(255,255,255,.055),
-                    rgba(255,255,255,.025)
-                );
+/* =========================================================
+   10. CARD HEADER
+========================================================= */
 
-            border: 1px solid var(--border);
+.card-header {
 
-            box-shadow:
-                0 15px 40px rgba(0,0,0,.23);
-        }
+    display: flex;
 
-        .panel-heading {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+    align-items: center;
 
-            margin-bottom: 14px;
-        }
+    gap: 12px;
 
-        .panel-heading-left {
-            display: flex;
-            align-items: center;
+    margin-bottom: 20px;
+}
 
-            gap: 9px;
-        }
 
-        .panel-heading-left span {
-            font-size: 19px;
-        }
+.card-icon {
 
-        .panel-heading h3 {
-            font-size: 15px;
-        }
+    width: 46px;
 
-        .panel-heading small {
-            color: var(--muted);
-            font-size: 11px;
-        }
+    height: 46px;
 
+    flex-shrink: 0;
 
-        /* =========================================================
-           14. OPERATOR BUTTONS
-        ========================================================= */
+    display: flex;
 
-        .operator-grid {
-            display: grid;
+    align-items: center;
 
-            grid-template-columns: 1fr;
+    justify-content: center;
 
-            gap: 10px;
-        }
+    border-radius: 14px;
 
-        .operator {
-            position: relative;
-            overflow: hidden;
+    font-size: 21px;
+}
 
-            width: 100%;
-            min-height: 70px;
 
-            padding: 12px 15px;
+.minus-icon {
 
-            border: none;
-            border-radius: 16px;
+    background: rgba(34,197,94,.12);
 
-            color: white;
+    border: 1px solid rgba(34,197,94,.16);
+}
 
-            text-align: left;
 
-            cursor: pointer;
+.plus-icon {
 
-            transition: .22s;
+    background: rgba(59,130,246,.12);
 
-            border: 1px solid rgba(255,255,255,.08);
-        }
+    border: 1px solid rgba(59,130,246,.16);
+}
 
-        .operator:hover {
-            transform: translateX(3px);
-            filter: brightness(1.08);
-        }
 
-        .operator:active {
-            transform: scale(.97);
-        }
+.card-title h2 {
 
-        .operator-icon {
-            font-size: 21px;
-            margin-bottom: 3px;
-        }
+    font-size: 17px;
+}
 
-        .operator-name {
-            font-size: 14px;
-            font-weight: 800;
-        }
 
-        .operator-desc {
-            margin-top: 2px;
+.card-title p {
 
-            color: rgba(255,255,255,.68);
+    margin-top: 4px;
 
-            font-size: 10px;
-        }
+    color: var(--muted);
 
-        .operator::after {
-            content: "›";
+    font-size: 12px;
+}
 
-            position: absolute;
 
-            right: 15px;
-            top: 50%;
+/* =========================================================
+   11. INPUT VA SELECT
+========================================================= */
 
-            transform: translateY(-50%);
+.field-label {
 
-            font-size: 27px;
+    margin: 0 0 7px 2px;
 
-            opacity: .45;
-        }
+    color: var(--muted);
 
-        .uzmobile {
-            background:
-                linear-gradient(
-                    135deg,
-                    #2563eb,
-                    #172554
-                );
-        }
+    font-size: 12px;
+}
 
-        .ucell {
-            background:
-                linear-gradient(
-                    135deg,
-                    #9333ea,
-                    #3b0764
-                );
-        }
 
-        .beeline {
-            background:
-                linear-gradient(
-                    135deg,
-                    #eab308,
-                    #713f12
-                );
-        }
+input,
+select {
 
-        .mobiuz {
-            background:
-                linear-gradient(
-                    135deg,
-                    #f97316,
-                    #7c2d12
-                );
-        }
+    width: 100%;
 
+    height: 54px;
 
-        /* =========================================================
-           15. PUBG SECTION
-        ========================================================= */
+    padding: 0 15px;
 
-        .pubg-section {
-            margin-top: 18px;
-        }
+    border-radius: 14px;
 
-        .pubg-card {
-            position: relative;
-            overflow: hidden;
+    border: 1px solid rgba(255,255,255,.07);
 
-            display: grid;
+    outline: none;
 
-            grid-template-columns:
-                230px
-                1fr
-                1fr;
+    background: #080e1a;
 
-            gap: 20px;
+    color: white;
 
-            align-items: center;
+    font-size: 16px;
 
-            padding: 22px;
+    transition: .2s;
+}
 
-            border-radius: 22px;
 
-            background:
-                linear-gradient(
-                    135deg,
-                    rgba(245,185,66,.09),
-                    rgba(255,255,255,.025)
-                );
+input {
 
-            border: 1px solid rgba(245,185,66,.14);
+    margin-bottom: 13px;
+}
 
-            box-shadow:
-                0 15px 40px rgba(0,0,0,.23);
-        }
 
-        .pubg-info {
-            text-align: center;
-            padding: 10px;
-        }
+input::placeholder {
 
-        .pubg-icon {
-            font-size: 40px;
-        }
+    color: #64748b;
+}
 
-        .pubg-info h2 {
-            margin-top: 5px;
-            font-size: 19px;
-        }
 
-        .pubg-info p {
-            margin-top: 5px;
+input:focus,
+select:focus {
 
-            color: var(--muted);
+    border-color:
+        rgba(245,185,66,.55);
 
-            font-size: 11px;
+    box-shadow:
+        0 0 0 3px
+        rgba(245,185,66,.08);
+}
 
-            line-height: 1.5;
-        }
 
-        .pubg-form {
-            padding: 17px;
+select {
 
-            border-radius: 17px;
+    margin-bottom: 13px;
 
-            background: rgba(0,0,0,.16);
+    cursor: pointer;
+}
 
-            border: 1px solid rgba(255,255,255,.05);
-        }
 
-        .form-title {
-            display: flex;
-            justify-content: space-between;
+/* =========================================================
+   12. RESULT
+========================================================= */
 
-            margin-bottom: 8px;
+.result {
 
-            color: #cbd5e1;
+    min-height: 62px;
 
-            font-size: 12px;
-            font-weight: 600;
-        }
+    display: flex;
 
-        .form-title span:last-child {
-            color: var(--gold);
-        }
+    align-items: center;
 
-        .pubg-form input {
-            margin: 0;
-        }
+    justify-content: center;
 
+    padding: 12px;
 
-        /* =========================================================
-           16. FOOTER
-        ========================================================= */
+    border-radius: 15px;
 
-        .footer {
-            text-align: center;
+    text-align: center;
 
-            margin-top: 22px;
+    white-space: pre-line;
 
-            color: #475569;
+    font-size: 18px;
 
-            font-size: 11px;
-        }
+    font-weight: 800;
 
+    border: 1px solid
+        rgba(255,255,255,.06);
+}
 
-        /* =========================================================
-           17. MODAL
-        ========================================================= */
 
-        .modal {
-            display: none;
+.result.minus {
 
-            position: fixed;
+    color: #86efac;
 
-            inset: 0;
+    background:
+        linear-gradient(
+            135deg,
+            rgba(34,197,94,.17),
+            rgba(22,163,74,.06)
+        );
+}
 
-            z-index: 1000;
 
-            align-items: center;
-            justify-content: center;
+.result.plus {
 
-            padding: 15px;
+    color: #93c5fd;
 
-            background: rgba(0,0,0,.78);
+    background:
+        linear-gradient(
+            135deg,
+            rgba(59,130,246,.17),
+            rgba(37,99,235,.06)
+        );
+}
 
-            backdrop-filter: blur(9px);
-        }
 
-        .modal.active {
-            display: flex;
-        }
+/* =========================================================
+   13. OPERATOR PANEL
+========================================================= */
 
-        .modal-content {
-            width: 100%;
-            max-width: 520px;
+.operator-panel {
 
-            max-height: 90vh;
+    padding: 18px;
 
-            overflow-y: auto;
+    border-radius: 22px;
 
-            padding: 18px;
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.055),
+            rgba(255,255,255,.025)
+        );
 
-            border-radius: 24px;
+    border: 1px solid var(--border);
 
-            background: #0b1220;
+    box-shadow:
+        0 15px 40px rgba(0,0,0,.23);
+}
 
-            border: 1px solid rgba(255,255,255,.1);
 
-            box-shadow:
-                0 30px 80px rgba(0,0,0,.5);
+.panel-heading {
 
-            animation:
-                modalOpen .25s ease;
-        }
+    display: flex;
 
-        @keyframes modalOpen {
+    align-items: center;
 
-            from {
-                opacity: 0;
-                transform:
-                    translateY(20px)
-                    scale(.97);
-            }
+    justify-content: space-between;
 
-            to {
-                opacity: 1;
-                transform:
-                    translateY(0)
-                    scale(1);
-            }
-        }
+    margin-bottom: 14px;
+}
 
-        .modal-top {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
 
-            margin-bottom: 14px;
-        }
+.panel-heading-left {
 
-        .modal-title {
-            font-size: 18px;
-            font-weight: 800;
-        }
+    display: flex;
 
-        .close-x {
-            width: 40px;
-            height: 40px;
+    align-items: center;
 
-            border: none;
+    gap: 9px;
+}
 
-            border-radius: 12px;
 
-            background: rgba(239,68,68,.12);
+.panel-heading-left span {
 
-            color: #f87171;
+    font-size: 19px;
+}
 
-            font-size: 18px;
 
-            cursor: pointer;
-        }
+.panel-heading h3 {
 
-        .clear-btn {
-            width: 100%;
-            height: 44px;
+    font-size: 15px;
+}
 
-            margin-bottom: 12px;
 
-            border: none;
+.panel-heading small {
 
-            border-radius: 13px;
+    color: var(--muted);
 
-            background: #172033;
+    font-size: 11px;
+}
 
-            color: #cbd5e1;
 
-            font-size: 13px;
-            font-weight: 700;
+/* =========================================================
+   14. OPERATOR BUTTONS
+========================================================= */
 
-            cursor: pointer;
-        }
+.operator-grid {
 
-        .clear-btn:hover {
-            background: #202d43;
-        }
+    display: grid;
 
+    grid-template-columns: 1fr;
 
-        /* =========================================================
-           18. MODAL OPERATOR INFO
-        ========================================================= */
+    gap: 10px;
+}
 
-        .operator-info {
-            display: none;
 
-            margin-top: 12px;
+.operator {
 
-            padding: 15px;
+    position: relative;
 
-            border-radius: 15px;
+    overflow: hidden;
 
-            background: rgba(255,255,255,.04);
+    width: 100%;
 
-            border: 1px solid rgba(255,255,255,.06);
-        }
+    min-height: 70px;
 
-        .operator-info.active {
-            display: block;
-        }
+    padding: 12px 15px;
 
-        .operator-info h4 {
-            margin-bottom: 10px;
+    border: none;
 
-            color: var(--gold);
+    border-radius: 16px;
 
-            font-size: 16px;
-        }
+    color: white;
 
-        .operator-info p {
-            margin-bottom: 7px;
+    text-align: left;
 
-            color: #cbd5e1;
+    cursor: pointer;
 
-            font-size: 12px;
+    transition: .22s;
 
-            line-height: 1.5;
-        }
+    border: 1px solid
+        rgba(255,255,255,.08);
+}
 
-        .operator-info strong {
-            color: white;
-        }
 
+.operator:hover {
 
-        /* =========================================================
-           19. MOBILE / TABLET
-        ========================================================= */
+    transform: translateX(3px);
 
-        @media (max-width: 1100px) {
+    filter: brightness(1.08);
+}
 
-            .main-grid {
-                grid-template-columns:
-                    1fr
-                    1fr;
-            }
 
-            .operator-panel {
-                grid-column: 1 / -1;
-            }
+.operator:active {
 
-            .operator-grid {
-                grid-template-columns:
-                    repeat(4, 1fr);
-            }
+    transform: scale(.97);
+}
 
-            .pubg-card {
-                grid-template-columns:
-                    1fr 1fr;
-            }
 
-            .pubg-info {
-                grid-column: 1 / -1;
-            }
-        }
+.operator-icon {
 
+    font-size: 21px;
 
-        /* =========================================================
-           20. TELEFON
-        ========================================================= */
+    margin-bottom: 3px;
+}
 
-        @media (max-width: 650px) {
 
-            body {
-                padding:
-                    10px
-                    8px
-                    25px;
-            }
+.operator-name {
 
-            .header {
-                display: block;
+    font-size: 14px;
 
-                text-align: center;
+    font-weight: 800;
+}
 
-                padding: 18px;
 
-                margin-bottom: 12px;
-            }
+.operator-desc {
 
-            .brand {
-                justify-content: center;
-            }
+    margin-top: 2px;
 
-            .brand-text {
-                text-align: left;
-            }
+    color:
+        rgba(255,255,255,.68);
 
-            .header-actions {
-                display: grid;
+    font-size: 10px;
+}
 
-                grid-template-columns:
-                    1fr 1fr;
 
-                margin-top: 15px;
-            }
+.operator::after {
 
-            .action-btn {
-                width: 100%;
+    content: "›";
 
-                padding: 0 10px;
-            }
+    position: absolute;
 
-            .main-grid {
-                grid-template-columns: 1fr;
+    right: 15px;
 
-                gap: 12px;
-            }
+    top: 50%;
 
-            .operator-panel {
-                grid-column: auto;
+    transform:
+        translateY(-50%);
 
-                padding: 15px;
-            }
+    font-size: 27px;
 
-            .operator-grid {
-                grid-template-columns:
-                    1fr 1fr;
+    opacity: .45;
+}
 
-                gap: 8px;
-            }
 
-            .operator {
-                min-height: 82px;
-            }
+.uzmobile {
 
-            .card {
-                padding: 17px;
-            }
+    background:
+        linear-gradient(
+            135deg,
+            #2563eb,
+            #172554
+        );
+}
 
-            .pubg-section {
-                margin-top: 12px;
-            }
 
-            .pubg-card {
-                grid-template-columns: 1fr;
+.ucell {
 
-                gap: 10px;
+    background:
+        linear-gradient(
+            135deg,
+            #9333ea,
+            #3b0764
+        );
+}
 
-                padding: 15px;
-            }
 
-            .pubg-info {
-                grid-column: auto;
-            }
+.beeline {
 
-            .pubg-form {
-                padding: 14px;
-            }
+    background:
+        linear-gradient(
+            135deg,
+            #eab308,
+            #713f12
+        );
+}
 
-            .result {
-                font-size: 16px;
-                min-height: 58px;
-            }
 
-            .brand-text h1 {
-                font-size: 22px;
-            }
+.mobiuz {
 
-            .logo {
-                width: 50px;
-                height: 50px;
+    background:
+        linear-gradient(
+            135deg,
+            #f97316,
+            #7c2d12
+        );
+}
 
-                font-size: 25px;
-            }
-        }
 
+/* =========================================================
+   15. PUBG SECTION
+========================================================= */
 
-        /* =========================================================
-           21. JUDA KICHIK TELEFON
-        ========================================================= */
+.pubg-section {
 
-        @media (max-width: 380px) {
+    margin-top: 18px;
+}
 
-            .brand-text p {
-                font-size: 11px;
-            }
 
-            .operator-name {
-                font-size: 13px;
-            }
+.pubg-card {
 
-            .operator-desc {
-                font-size: 9px;
-            }
+    position: relative;
 
-            .card-title h2 {
-                font-size: 16px;
-            }
-        }
+    overflow: hidden;
 
+    display: grid;
 
-        /* =========================================================
-           22. SCROLLBAR
-        ========================================================= */
+    grid-template-columns:
+        230px
+        1fr
+        1fr;
 
-        ::-webkit-scrollbar {
-            width: 6px;
-        }
+    gap: 20px;
 
-        ::-webkit-scrollbar-track {
-            background: #080e1a;
-        }
+    align-items: center;
 
-        ::-webkit-scrollbar-thumb {
-            background: #334155;
-            border-radius: 10px;
-        }
+    padding: 22px;
+
+    border-radius: 22px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(245,185,66,.09),
+            rgba(255,255,255,.025)
+        );
+
+    border:
+        1px solid
+        rgba(245,185,66,.14);
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,.23);
+}
+
+
+.pubg-info {
+
+    text-align: center;
+
+    padding: 10px;
+}
+
+
+.pubg-icon {
+
+    font-size: 40px;
+}
+
+
+.pubg-info h2 {
+
+    margin-top: 5px;
+
+    font-size: 19px;
+}
+
+
+.pubg-info p {
+
+    margin-top: 5px;
+
+    color: var(--muted);
+
+    font-size: 11px;
+
+    line-height: 1.5;
+}
+
+
+.pubg-form {
+
+    padding: 17px;
+
+    border-radius: 17px;
+
+    background:
+        rgba(0,0,0,.16);
+
+    border:
+        1px solid
+        rgba(255,255,255,.05);
+}
+
+
+.form-title {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    margin-bottom: 8px;
+
+    color: #cbd5e1;
+
+    font-size: 12px;
+
+    font-weight: 600;
+}
+
+
+.form-title span:last-child {
+
+    color: var(--gold);
+}
+
+
+.pubg-form input {
+
+    margin: 0;
+}
+
+
+/* =========================================================
+   16. FOOTER
+========================================================= */
+
+.footer {
+
+    text-align: center;
+
+    margin-top: 22px;
+
+    color: #475569;
+
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   17. MODAL
+========================================================= */
+
+.modal {
+
+    display: none;
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 1000;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 15px;
+
+    background:
+        rgba(0,0,0,.78);
+
+    backdrop-filter:
+        blur(9px);
+}
+
+
+.modal.active {
+
+    display: flex;
+}
+
+
+.modal-content {
+
+    width: 100%;
+
+    max-width: 520px;
+
+    max-height: 90vh;
+
+    overflow-y: auto;
+
+    padding: 20px;
+
+    border-radius: 24px;
+
+    background: #0b1220;
+
+    border:
+        1px solid
+        rgba(255,255,255,.1);
+
+    box-shadow:
+        0 30px 80px
+        rgba(0,0,0,.5);
+
+    animation:
+        modalOpen .25s ease;
+}
+
+
+@keyframes modalOpen {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(20px)
+            scale(.97);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+
+/* =========================================================
+   18. MODAL HEADER
+========================================================= */
+
+.modal-header {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+    margin-bottom: 20px;
+}
+
+
+.modal-header h2 {
+
+    font-size: 20px;
+}
+
+
+.modal-header p {
+
+    margin-top: 5px;
+
+    color: var(--muted);
+
+    font-size: 12px;
+}
+
+
+.modal-close {
+
+    width: 42px;
+
+    height: 42px;
+
+    flex-shrink: 0;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background:
+        rgba(239,68,68,.12);
+
+    color: #f87171;
+
+    font-size: 24px;
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+
+.modal-close:hover {
+
+    background:
+        rgba(239,68,68,.22);
+
+    transform: scale(1.05);
+}
+
+
+/* =========================================================
+   19. YOSH NATIJA
+========================================================= */
+
+.age-result {
+
+    min-height: 125px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 7px;
+
+    margin-top: 4px;
+
+    line-height: 1.5;
+
+    font-size: 16px;
+}
+
+
+.age-result .age-main {
+
+    color: #86efac;
+
+    font-size: 22px;
+
+    font-weight: 900;
+}
+
+
+.age-result .age-detail {
+
+    color: #cbd5e1;
+
+    font-size: 14px;
+}
+
+
+.age-result .age-time {
+
+    color: #93c5fd;
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   20. MODAL TOZALASH
+========================================================= */
+
+.clear-btn {
+
+    width: 100%;
+
+    height: 44px;
+
+    margin-top: 12px;
+
+    border: none;
+
+    border-radius: 13px;
+
+    background: #172033;
+
+    color: #cbd5e1;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+
+.clear-btn:hover {
+
+    background: #202d43;
+
+    color: white;
+}
+
+
+/* =========================================================
+   21. MOBILE / TABLET
+========================================================= */
+
+@media (max-width: 1100px) {
+
+    .main-grid {
+
+        grid-template-columns:
+            1fr
+            1fr;
+    }
+
+
+    .operator-panel {
+
+        grid-column: 1 / -1;
+    }
+
+
+    .operator-grid {
+
+        grid-template-columns:
+            repeat(4, 1fr);
+    }
+
+
+    .pubg-card {
+
+        grid-template-columns:
+            1fr 1fr;
+    }
+
+
+    .pubg-info {
+
+        grid-column: 1 / -1;
+    }
+}
+
+
+/* =========================================================
+   22. TELEFON
+========================================================= */
+
+@media (max-width: 650px) {
+
+    body {
+
+        padding:
+            10px
+            8px
+            25px;
+    }
+
+
+    .header {
+
+        display: block;
+
+        text-align: center;
+
+        padding: 18px;
+
+        margin-bottom: 12px;
+    }
+
+
+    .brand {
+
+        justify-content: center;
+    }
+
+
+    .brand-text {
+
+        text-align: left;
+    }
+
+
+    .header-actions {
+
+        display: grid;
+
+        grid-template-columns:
+            1fr 1fr;
+
+        margin-top: 15px;
+    }
+
+
+    .action-btn {
+
+        width: 100%;
+
+        padding: 0 10px;
+    }
+
+
+    .main-grid {
+
+        grid-template-columns: 1fr;
+
+        gap: 12px;
+    }
+
+
+    .operator-panel {
+
+        grid-column: auto;
+
+        padding: 15px;
+    }
+
+
+    .operator-grid {
+
+        grid-template-columns:
+            1fr 1fr;
+
+        gap: 8px;
+    }
+
+
+    .operator {
+
+        min-height: 82px;
+    }
+
+
+    .card {
+
+        padding: 17px;
+    }
+
+
+    .pubg-section {
+
+        margin-top: 12px;
+    }
+
+
+    .pubg-card {
+
+        grid-template-columns: 1fr;
+
+        gap: 10px;
+
+        padding: 15px;
+    }
+
+
+    .pubg-info {
+
+        grid-column: auto;
+    }
+
+
+    .pubg-form {
+
+        padding: 14px;
+    }
+
+
+    .result {
+
+        font-size: 16px;
+
+        min-height: 58px;
+    }
+
+
+    .brand-text h1 {
+
+        font-size: 22px;
+    }
+
+
+    .logo {
+
+        width: 50px;
+
+        height: 50px;
+
+        font-size: 25px;
+    }
+
+
+    .modal {
+
+        padding: 10px;
+    }
+
+
+    .modal-content {
+
+        padding: 17px;
+
+        border-radius: 20px;
+    }
+
+
+    .modal-header h2 {
+
+        font-size: 18px;
+    }
+
+
+    .age-result {
+
+        min-height: 120px;
+    }
+}
+
+
+/* =========================================================
+   23. JUDA KICHIK TELEFON
+========================================================= */
+
+@media (max-width: 380px) {
+
+    .brand-text p {
+
+        font-size: 11px;
+    }
+
+
+    .operator-name {
+
+        font-size: 13px;
+    }
+
+
+    .operator-desc {
+
+        font-size: 9px;
+    }
+
+
+    .card-title h2 {
+
+        font-size: 16px;
+    }
+
+
+    .modal-content {
+
+        padding: 14px;
+    }
+}
+
+
+/* =========================================================
+   24. SCROLLBAR
+========================================================= */
+
+::-webkit-scrollbar {
+
+    width: 6px;
+}
+
+
+::-webkit-scrollbar-track {
+
+    background: #080e1a;
+}
+
+
+::-webkit-scrollbar-thumb {
+
+    background: #334155;
+
+    border-radius: 10px;
+}
+
 
     </style>
+
 </head>
 
 
 <body>
 
 
-    <!-- =========================================================
-         ASOSIY WRAPPER
-    ========================================================= -->
+<!-- =========================================================
+     ASOSIY WRAPPER
+========================================================= -->
 
-    <div class="wrapper">
+<div class="wrapper">
 
 
-        <!-- =====================================================
-             HEADER
-        ===================================================== -->
+    <!-- =====================================================
+         HEADER
+    ===================================================== -->
 
-        <header class="header">
+    <header class="header">
 
-            <div class="brand">
 
-                <div class="logo">
-                    %
-                </div>
+        <div class="brand">
 
-                <div class="brand-text">
-
-                    <h1>
-                        FOIZ Kalkulator
-                    </h1>
-
-                    <p>
-                        nyx_exe
-                    </p>
-
-                </div>
-
+            <div class="logo">
+                %
             </div>
 
 
-            <div class="header-actions">
-
-                <button
-                    class="action-btn reset"
-                    onclick="yangilash()"
-                >
-                    🔄 Tozalash
-                </button>
-
-            </div>
-
-        </header>
-
-
-
-        <!-- =====================================================
-             ASOSIY QISM
-        ===================================================== -->
-
-        <div class="main-grid">
-
-
-            <!-- =================================================
-                 FOIZ AYIRISH
-            ================================================= -->
-
-            <div>
-
-                <div class="section-label">
-                    💸 Foiz hisoblash
-                </div>
-
-
-                <div class="card">
-
-                    <div class="card-header">
-
-                        <div class="card-icon minus-icon">
-                            💸
-                        </div>
-
-                        <div class="card-title">
-
-                            <h2>
-                                Foiz Ayirish
-                            </h2>
-
-                            <p>
-                                Summadan foizni hisoblash
-                            </p>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="field-label">
-                        Foiz miqdori
-                    </div>
-
-
-                    <select
-                        id="minusPercent"
-                        onchange="hisoblaMinus()"
-                    >
-
-                        <option value="1">
-                            1%
-                        </option>
-
-                        <option value="2">
-                            2%
-                        </option>
-
-                        <option
-                            value="3"
-                            selected
-                        >
-                            3%
-                        </option>
-
-                        <option value="4">
-                            4%
-                        </option>
-
-                        <option value="5">
-                            5%
-                        </option>
-
-                    </select>
-
-
-                    <div class="field-label">
-                        Summa
-                    </div>
-
-
-                    <input
-                        type="number"
-                        id="inputMinus"
-                        placeholder="Masalan: 100000"
-                        oninput="hisoblaMinus()"
-                    >
-
-
-                    <div
-                        class="result minus"
-                        id="natijaMinus"
-                    >
-                        0 so'm
-                    </div>
-
-                </div>
-
-            </div>
-
-
-
-            <!-- =================================================
-                 FOIZ QO'SHISH
-            ================================================= -->
-
-            <div>
-
-                <div class="section-label">
-                    📈 Foiz hisoblash
-                </div>
-
-
-                <div class="card">
-
-                    <div class="card-header">
-
-                        <div class="card-icon plus-icon">
-                            📈
-                        </div>
-
-                        <div class="card-title">
-
-                            <h2>
-                                Foiz Qo‘shish
-                            </h2>
-
-                            <p>
-                                Summaga foiz qo‘shish
-                            </p>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="field-label">
-                        Foiz miqdori
-                    </div>
-
-
-                    <select
-                        id="plusPercent"
-                        onchange="hisoblaPlus()"
-                    >
-
-                        <option value="1">
-                            1%
-                        </option>
-
-                        <option value="2">
-                            2%
-                        </option>
-
-                        <option
-                            value="3"
-                            selected
-                        >
-                            3%
-                        </option>
-
-                        <option value="4">
-                            4%
-                        </option>
-
-                        <option value="5">
-                            5%
-                        </option>
-
-                    </select>
-
-
-                    <div class="field-label">
-                        Summa
-                    </div>
-
-
-                    <input
-                        type="number"
-                        id="inputPlus"
-                        placeholder="Masalan: 100000"
-                        oninput="hisoblaPlus()"
-                    >
-
-
-                    <div
-                        class="result plus"
-                        id="natijaPlus"
-                    >
-                        0 so'm
-                    </div>
-
-                </div>
-
-            </div>
-
-
-
-            <!-- =================================================
-                 OPERATORLAR
-            ================================================= -->
-
-            <div class="operator-panel">
-
-
-                <div class="panel-heading">
-
-                    <div class="panel-heading-left">
-
-                        <span>
-                            📱
-                        </span>
-
-                        <h3>
-                            Operatorlar
-                        </h3>
-
-                    </div>
-
-                    <small>
-                        Tariflar
-                    </small>
-
-                </div>
-
-
-
-                <div class="operator-grid">
-
-
-                    <!-- UZMOBILE -->
-
-                    <button
-                        class="operator uzmobile"
-                        onclick="ochUzmobile()"
-                    >
-
-                        <div class="operator-icon">
-                            📱
-                        </div>
-
-                        <div class="operator-name">
-                            Uzmobile
-                        </div>
-
-                        <div class="operator-desc">
-                            Tariflar va xizmatlar
-                        </div>
-
-                    </button>
-
-
-
-                    <!-- UCELL -->
-
-                    <button
-                        class="operator ucell"
-                        onclick="ochUcell()"
-                    >
-
-                        <div class="operator-icon">
-                            📱
-                        </div>
-
-                        <div class="operator-name">
-                            Ucell
-                        </div>
-
-                        <div class="operator-desc">
-                            Tariflar va xizmatlar
-                        </div>
-
-                    </button>
-
-
-
-                    <!-- BEELINE -->
-
-                    <button
-                        class="operator beeline"
-                        onclick="ochBeeline()"
-                    >
-
-                        <div class="operator-icon">
-                            📱
-                        </div>
-
-                        <div class="operator-name">
-                            Beeline
-                        </div>
-
-                        <div class="operator-desc">
-                            Tariflar va xizmatlar
-                        </div>
-
-                    </button>
-
-
-
-                    <!-- MOBIUZ -->
-
-                    <button
-                        class="operator mobiuz"
-                        onclick="ochMobiuz()"
-                    >
-
-                        <div class="operator-icon">
-                            📱
-                        </div>
-
-                        <div class="operator-name">
-                            Mobiuz
-                        </div>
-
-                        <div class="operator-desc">
-                            Tariflar va xizmatlar
-                        </div>
-
-                    </button>
-
-
-                </div>
+            <div class="brand-text">
+
+                <h1>
+                    FOIZ Kalkulator
+                </h1>
+
+                <p>
+                    nyx_exe
+                </p>
 
             </div>
 
         </div>
 
 
+        <div class="header-actions">
 
-        <!-- =====================================================
-             PUBG UC KALKULATOR
-        ===================================================== -->
 
-        <div class="pubg-section">
+            <button
+                class="action-btn reset"
+                onclick="yangilash()"
+            >
+                🔄 Tozalash
+            </button>
 
+
+            <button
+                class="action-btn pubg"
+                onclick="ochYosh()"
+            >
+                🎂 Yosh
+            </button>
+
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =====================================================
+         ASOSIY QISM
+    ===================================================== -->
+
+    <div class="main-grid">
+
+
+        <!-- =================================================
+             FOIZ AYIRISH
+        ================================================= -->
+
+        <div>
 
             <div class="section-label">
-                🎮 PUBG UC kalkulator
+                💸 Foiz hisoblash
             </div>
 
 
-            <div class="pubg-card">
+            <div class="card">
 
 
-                <!-- PUBG INFO -->
+                <div class="card-header">
 
-                <div class="pubg-info">
-
-                    <div class="pubg-icon">
-                        🎮
-                    </div>
-
-                    <h2>
-                        PUBG UC
-                    </h2>
-
-                </div>
-
-
-
-                <!-- PUL -> UC -->
-
-                <div class="pubg-form">
-
-                    <div class="form-title">
-
-                        <span>
-                            💰 Pul → UC
-                        </span>
-
-                        <span>
-                            SO'M
-                        </span>
-
+                    <div class="card-icon minus-icon">
+                        💸
                     </div>
 
 
-                    <input
-                        type="number"
-                        id="inputPul"
-                        placeholder="Masalan: 120000"
-                        oninput="hisoblaPul()"
-                    >
+                    <div class="card-title">
 
+                        <h2>
+                            Foiz Ayirish
+                        </h2>
 
-                    <div
-                        class="result plus"
-                        id="natijaPul"
-                        style="margin-top:10px;"
-                    >
-                        Natija chiqadi
+                        <p>
+                            Summadan foizni hisoblash
+                        </p>
+
                     </div>
 
                 </div>
 
 
-
-                <!-- UC -> PUL -->
-
-                <div class="pubg-form">
-
-                    <div class="form-title">
-
-                        <span>
-                            🎯 UC → Pul
-                        </span>
-
-                        <span>
-                            UC
-                        </span>
-
-                    </div>
-
-
-                    <input
-                        type="number"
-                        id="inputUC"
-                        placeholder="Masalan: 660"
-                        oninput="hisoblaUC()"
-                    >
-
-
-                    <div
-                        class="result minus"
-                        id="natijaUC"
-                        style="margin-top:10px;"
-                    >
-                        Natija chiqadi
-                    </div>
-
+                <div class="field-label">
+                    Foiz miqdori
                 </div>
 
+
+                <select
+                    id="minusPercent"
+                    onchange="hisoblaMinus()"
+                >
+
+                    <option value="1">
+                        1%
+                    </option>
+
+                    <option value="2">
+                        2%
+                    </option>
+
+                    <option
+                        value="3"
+                        selected
+                    >
+                        3%
+                    </option>
+
+                    <option value="4">
+                        4%
+                    </option>
+
+                    <option value="5">
+                        5%
+                    </option>
+
+                </select>
+
+
+                <div class="field-label">
+                    Summa
+                </div>
+
+
+                <input
+                    type="number"
+                    id="inputMinus"
+                    placeholder="Masalan: 100000"
+                    oninput="hisoblaMinus()"
+                >
+
+
+                <div
+                    class="result minus"
+                    id="natijaMinus"
+                >
+                    0 so'm
+                </div>
 
             </div>
 
@@ -1603,17 +1629,332 @@
 
 
 
-        <!-- =====================================================
-             FOOTER
-        ===================================================== -->
+        <!-- =================================================
+             FOIZ QO'SHISH
+        ================================================= -->
 
-        <div class="footer">
+        <div>
 
-            FOIZ Kalkulator
-            •
-            Versiya: 1.2
-            •
-            Yangilandi : 13.09.2026
+            <div class="section-label">
+                📈 Foiz hisoblash
+            </div>
+
+
+            <div class="card">
+
+
+                <div class="card-header">
+
+                    <div class="card-icon plus-icon">
+                        📈
+                    </div>
+
+
+                    <div class="card-title">
+
+                        <h2>
+                            Foiz Qo‘shish
+                        </h2>
+
+                        <p>
+                            Summaga foiz qo‘shish
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="field-label">
+                    Foiz miqdori
+                </div>
+
+
+                <select
+                    id="plusPercent"
+                    onchange="hisoblaPlus()"
+                >
+
+                    <option value="1">
+                        1%
+                    </option>
+
+                    <option value="2">
+                        2%
+                    </option>
+
+                    <option
+                        value="3"
+                        selected
+                    >
+                        3%
+                    </option>
+
+                    <option value="4">
+                        4%
+                    </option>
+
+                    <option value="5">
+                        5%
+                    </option>
+
+                </select>
+
+
+                <div class="field-label">
+                    Summa
+                </div>
+
+
+                <input
+                    type="number"
+                    id="inputPlus"
+                    placeholder="Masalan: 100000"
+                    oninput="hisoblaPlus()"
+                >
+
+
+                <div
+                    class="result plus"
+                    id="natijaPlus"
+                >
+                    0 so'm
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             OPERATORLAR
+        ================================================= -->
+
+        <div class="operator-panel">
+
+
+            <div class="panel-heading">
+
+                <div class="panel-heading-left">
+
+                    <span>
+                        📱
+                    </span>
+
+                    <h3>
+                        Operatorlar
+                    </h3>
+
+                </div>
+
+
+                <small>
+                    Tariflar
+                </small>
+
+            </div>
+
+
+            <div class="operator-grid">
+
+
+                <!-- UZMOBILE -->
+
+                <button
+                    class="operator uzmobile"
+                    onclick="ochUzmobile()"
+                >
+
+                    <div class="operator-icon">
+                        📱
+                    </div>
+
+                    <div class="operator-name">
+                        Uzmobile
+                    </div>
+
+                    <div class="operator-desc">
+                        Tariflar va xizmatlar
+                    </div>
+
+                </button>
+
+
+                <!-- UCELL -->
+
+                <button
+                    class="operator ucell"
+                    onclick="ochUcell()"
+                >
+
+                    <div class="operator-icon">
+                        📱
+                    </div>
+
+                    <div class="operator-name">
+                        Ucell
+                    </div>
+
+                    <div class="operator-desc">
+                        Tariflar va xizmatlar
+                    </div>
+
+                </button>
+
+
+                <!-- BEELINE -->
+
+                <button
+                    class="operator beeline"
+                    onclick="ochBeeline()"
+                >
+
+                    <div class="operator-icon">
+                        📱
+                    </div>
+
+                    <div class="operator-name">
+                        Beeline
+                    </div>
+
+                    <div class="operator-desc">
+                        Tariflar va xizmatlar
+                    </div>
+
+                </button>
+
+
+                <!-- MOBIUZ -->
+
+                <button
+                    class="operator mobiuz"
+                    onclick="ochMobiuz()"
+                >
+
+                    <div class="operator-icon">
+                        📱
+                    </div>
+
+                    <div class="operator-name">
+                        Mobiuz
+                    </div>
+
+                    <div class="operator-desc">
+                        Tariflar va xizmatlar
+                    </div>
+
+                </button>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         PUBG UC KALKULATOR
+    ===================================================== -->
+
+    <div class="pubg-section">
+
+
+        <div class="section-label">
+            🎮 PUBG UC kalkulator
+        </div>
+
+
+        <div class="pubg-card">
+
+
+            <!-- PUBG INFO -->
+
+            <div class="pubg-info">
+
+                <div class="pubg-icon">
+                    🎮
+                </div>
+
+                <h2>
+                    PUBG UC
+                </h2>
+
+            </div>
+
+
+            <!-- PUL -> UC -->
+
+            <div class="pubg-form">
+
+                <div class="form-title">
+
+                    <span>
+                        💰 Pul → UC
+                    </span>
+
+                    <span>
+                        SO'M
+                    </span>
+
+                </div>
+
+
+                <input
+                    type="number"
+                    id="inputPul"
+                    placeholder="Masalan: 120000"
+                    oninput="hisoblaPul()"
+                >
+
+
+                <div
+                    class="result plus"
+                    id="natijaPul"
+                    style="margin-top:10px;"
+                >
+                    Natija chiqadi
+                </div>
+
+            </div>
+
+
+            <!-- UC -> PUL -->
+
+            <div class="pubg-form">
+
+                <div class="form-title">
+
+                    <span>
+                        🎯 UC → Pul
+                    </span>
+
+                    <span>
+                        UC
+                    </span>
+
+                </div>
+
+
+                <input
+                    type="number"
+                    id="inputUC"
+                    placeholder="Masalan: 660"
+                    oninput="hisoblaUC()"
+                >
+
+
+                <div
+                    class="result minus"
+                    id="natijaUC"
+                    style="margin-top:10px;"
+                >
+                    Natija chiqadi
+                </div>
+
+            </div>
 
 
         </div>
@@ -1622,600 +1963,1133 @@
 
 
 
-    <!-- =========================================================
-         JAVASCRIPT
-    ========================================================= -->
+    <!-- =====================================================
+         FOOTER
+    ===================================================== -->
 
-    <script>
+    <div class="footer">
 
+        FOIZ Kalkulator
+        •
+        Versiya: 1.3
+        •
+        Yangilandi : 13.09.2026
 
-        /* =========================================================
-           1. FOIZ AYIRISH
-        ========================================================= */
+    </div>
 
-        function hisoblaMinus() {
 
-            const summa =
-                Number(
-                    document.getElementById("inputMinus").value
-                );
+</div>
 
-            const foiz =
-                Number(
-                    document.getElementById("minusPercent").value
-                );
 
 
-            if (summa > 0) {
+<!-- =========================================================
+     YOSH MINI MODAL
+========================================================= -->
 
-                /*
-                    Masalan:
+<div
+    class="modal"
+    id="modalYosh"
+>
 
-                    103000 / 1.03 = 100000
 
-                    Ya'ni berilgan summa ichidan
-                    3% komissiyani hisobga olgan holda
-                    asosiy summani topadi.
-                */
+    <div class="modal-content">
 
-                const natija =
-                    Math.floor(
-                        summa /
-                        ((100 + foiz) / 100)
-                    );
 
+        <div class="modal-header">
 
-                document.getElementById(
-                    "natijaMinus"
-                ).innerText =
-                    natija.toLocaleString("uz-UZ")
-                    + " so'm";
 
-            }
+            <div>
 
-            else {
+                <h2>
+                    🎂 Yosh kalkulatori
+                </h2>
 
-                document.getElementById(
-                    "natijaMinus"
-                ).innerText =
-                    "0 so'm";
-            }
+                <p>
+                    Tug‘ilgan sana va vaqt bo‘yicha aniq yosh
+                </p>
 
-        }
+            </div>
 
 
+            <button
+                class="modal-close"
+                onclick="yopYosh()"
+                aria-label="Yopish"
+            >
+                ×
+            </button>
 
-        /* =========================================================
-           2. FOIZ QO'SHISH
-        ========================================================= */
 
-        function hisoblaPlus() {
+        </div>
 
-            const summa =
-                Number(
-                    document.getElementById("inputPlus").value
-                );
 
-            const foiz =
-                Number(
-                    document.getElementById("plusPercent").value
-                );
 
+        <!-- TUG'ILGAN SANA -->
 
-            if (summa > 0) {
+        <div class="field-label">
+            Tug‘ilgan sana
+        </div>
 
-                const natija =
-                    summa *
-                    (1 + foiz / 100);
 
+        <input
+            type="text"
+            id="modalBirthDate"
+            placeholder="22.04.2005"
+            maxlength="10"
+            inputmode="numeric"
+            oninput="formatSana(this)"
+        >
 
-                document.getElementById(
-                    "natijaPlus"
-                ).innerText =
-                    Math.round(natija)
-                    .toLocaleString("uz-UZ")
-                    + " so'm";
 
-            }
 
-            else {
+        <!-- TUG'ILGAN VAQT -->
 
-                document.getElementById(
-                    "natijaPlus"
-                ).innerText =
-                    "0 so'm";
-            }
+        <div class="field-label">
+            Tug‘ilgan vaqt
+        </div>
 
-        }
 
+        <input
+            type="time"
+            id="modalBirthTime"
+            value="00:00"
+        >
 
 
-        /* =========================================================
-           3. PUBG PAKETLARI
-        ========================================================= */
 
-        const paketlar = [
+        <!-- NATIJA -->
 
-            {
-                uc: 32400,
-                narx: 4700000
-            },
+        <div
+            class="result minus age-result"
+            id="modalNatijaYosh"
+        >
 
-            {
-                uc: 24300,
-                narx: 3520000
-            },
+            Tug‘ilgan sanani kiriting
 
-            {
-                uc: 16200,
-                narx: 2350000
-            },
+        </div>
 
-            {
-                uc: 8100,
-                narx: 1180000
-            },
 
-            {
-                uc: 3850,
-                narx: 590000
-            },
 
-            {
-                uc: 1800,
-                narx: 297000
-            },
+        <!-- TOZALASH -->
 
-            {
-                uc: 660,
-                narx: 120000
-            },
+        <button
+            class="clear-btn"
+            onclick="tozalashModalYosh()"
+        >
+            🔄 Tozalash
+        </button>
 
-            {
-                uc: 325,
-                narx: 60000
-            },
 
-            {
-                uc: 60,
-                narx: 13000
-            },
+    </div>
 
-            {
-                uc: 30,
-                narx: 7000
-            }
+</div>
 
-        ];
 
 
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
 
-        /* =========================================================
-           4. PUL -> UC
-        ========================================================= */
+<script>
 
-        function hisoblaPul() {
 
-            const pul =
-                parseInt(
-                    document.getElementById("inputPul").value
-                );
+/* =========================================================
+   1. FOIZ AYIRISH
+========================================================= */
 
+function hisoblaMinus() {
 
-            if (!pul || pul <= 0) {
-
-                document.getElementById(
-                    "natijaPul"
-                ).innerText =
-                    "Natija chiqadi";
-
-                return;
-            }
-
-
-            let qolganPul = pul;
-
-            let jamiUC = 0;
-
-            let natija = "";
-
-
-            for (const paket of paketlar) {
-
-                const soni =
-                    Math.floor(
-                        qolganPul / paket.narx
-                    );
-
-
-                if (soni > 0) {
-
-                    natija +=
-                        `${paket.uc.toLocaleString("uz-UZ")} UC → ${soni} ta\n`;
-
-
-                    qolganPul -=
-                        soni * paket.narx;
-
-
-                    jamiUC +=
-                        soni * paket.uc;
-                }
-
-            }
-
-
-            document.getElementById(
-                "natijaPul"
-            ).innerText =
-
-                `Jami UC: ${jamiUC.toLocaleString("uz-UZ")}\n` +
-
-                `Qoldiq: ${qolganPul.toLocaleString("uz-UZ")} so'm\n\n` +
-
-                natija;
-
-        }
-
-
-
-        /* =========================================================
-           5. UC -> PUL
-        ========================================================= */
-
-        function hisoblaUC() {
-
-            const uc =
-                parseInt(
-                    document.getElementById("inputUC").value
-                );
-
-
-            if (!uc || uc <= 0) {
-
-                document.getElementById(
-                    "natijaUC"
-                ).innerText =
-                    "Natija chiqadi";
-
-                return;
-            }
-
-
-            let qolganUC = uc;
-
-            let jamiPul = 0;
-
-            let natija = "";
-
-
-            for (const paket of paketlar) {
-
-                const soni =
-                    Math.floor(
-                        qolganUC / paket.uc
-                    );
-
-
-                if (soni > 0) {
-
-                    natija +=
-                        `${paket.uc.toLocaleString("uz-UZ")} UC → ${soni} ta\n`;
-
-
-                    qolganUC -=
-                        soni * paket.uc;
-
-
-                    jamiPul +=
-                        soni * paket.narx;
-                }
-
-            }
-
-
-            document.getElementById(
-                "natijaUC"
-            ).innerText =
-
-                `Jami: ${jamiPul.toLocaleString("uz-UZ")} so'm\n` +
-
-                `Qoldiq UC: ${qolganUC}\n\n` +
-
-                natija;
-
-        }
-
-
-
-        /* =========================================================
-           6. PUBG MODAL OCHISH
-        ========================================================= */
-
-        function ochPubg() {
-
-            const modal =
-                document.getElementById("pubgModal");
-
-
-            modal.classList.add("active");
-
-        }
-
-
-
-        /* =========================================================
-           7. PUBG MODAL YOPISH
-        ========================================================= */
-
-        function yopPubg() {
-
-            const modal =
-                document.getElementById("pubgModal");
-
-
-            modal.classList.remove("active");
-
-        }
-
-
-
-        /* =========================================================
-           8. MODAL ICHIDAGI PUL -> UC
-        ========================================================= */
-
-        function hisoblaModalPul() {
-
-            const pul =
-                parseInt(
-                    document.getElementById("modalPul").value
-                );
-
-
-            if (!pul || pul <= 0) {
-
-                document.getElementById(
-                    "modalNatija"
-                ).innerText =
-                    "Natija chiqadi";
-
-                return;
-            }
-
-
-            let qolganPul = pul;
-
-            let jamiUC = 0;
-
-            let natija = "";
-
-
-            for (const paket of paketlar) {
-
-                const soni =
-                    Math.floor(
-                        qolganPul / paket.narx
-                    );
-
-
-                if (soni > 0) {
-
-                    natija +=
-                        `${paket.uc.toLocaleString("uz-UZ")} UC → ${soni} ta\n`;
-
-
-                    qolganPul -=
-                        soni * paket.narx;
-
-
-                    jamiUC +=
-                        soni * paket.uc;
-                }
-
-            }
-
-
-            document.getElementById(
-                "modalNatija"
-            ).innerText =
-
-                `Jami UC: ${jamiUC.toLocaleString("uz-UZ")}\n` +
-
-                `Qoldiq: ${qolganPul.toLocaleString("uz-UZ")} so'm\n\n` +
-
-                natija;
-
-        }
-
-
-
-        /* =========================================================
-           9. PUBG TOZALASH
-        ========================================================= */
-
-        function pubgTozalash() {
-
-            document.getElementById(
-                "inputPul"
-            ).value = "";
-
-            document.getElementById(
-                "inputUC"
-            ).value = "";
-
-            document.getElementById(
-                "modalPul"
-            ).value = "";
-
-
-            document.getElementById(
-                "natijaPul"
-            ).innerText =
-                "Natija chiqadi";
-
-
-            document.getElementById(
-                "natijaUC"
-            ).innerText =
-                "Natija chiqadi";
-
-
-            document.getElementById(
-                "modalNatija"
-            ).innerText =
-                "Natija chiqadi";
-
-        }
-
-
-
-        /* =========================================================
-           10. UMUMIY TOZALASH
-        ========================================================= */
-
-        function yangilash() {
-
-            document
-                .querySelectorAll("input")
-                .forEach(function(input) {
-
-                    input.value = "";
-
-                });
-
-
-            document.getElementById(
-                "minusPercent"
-            ).value = "3";
-
-
-            document.getElementById(
-                "plusPercent"
-            ).value = "3";
-
-
-            document.getElementById(
-                "natijaMinus"
-            ).innerText =
-                "0 so'm";
-
-
-            document.getElementById(
-                "natijaPlus"
-            ).innerText =
-                "0 so'm";
-
-
-            document.getElementById(
-                "natijaPul"
-            ).innerText =
-                "Natija chiqadi";
-
-
-            document.getElementById(
-                "natijaUC"
-            ).innerText =
-                "Natija chiqadi";
-
-
-            document.getElementById(
-                "modalNatija"
-            ).innerText =
-                "Natija chiqadi";
-
-        }
-
-
-
-        /* =========================================================
-           11. OPERATORLAR
-        ========================================================= */
-
-        function ochUzmobile() {
-
-            window.open(
-                "https://uztelecom.uz/uz/jismoniy-shaxslarga/tarif-rejalar/#gsm",
-                "_blank"
-            );
-
-        }
-
-
-        function ochUcell() {
-
-            window.open(
-                "https://ucell.uz/uz/tariffs",
-                "_blank"
-            );
-
-        }
-
-
-        function ochBeeline() {
-
-            window.open(
-                "https://beeline.uz/uz/products/tariffs",
-                "_blank"
-            );
-
-        }
-
-
-        function ochMobiuz() {
-
-            window.open(
-                "https://mobi.uz/uz/tariff/",
-                "_blank"
-            );
-
-        }
-
-
-
-        /* =========================================================
-           12. MODALNI TASHQARIDAN BOSIB YOPISH
-        ========================================================= */
-
-        window.addEventListener(
-            "click",
-            function(event) {
-
-                const modal =
-                    document.getElementById(
-                        "pubgModal"
-                    );
-
-
-                if (event.target === modal) {
-
-                    yopPubg();
-
-                }
-
-            }
+    const summa =
+        Number(
+            document.getElementById("inputMinus").value
         );
 
 
-
-        /* =========================================================
-           13. ESC BILAN MODALNI YOPISH
-        ========================================================= */
-
-        document.addEventListener(
-            "keydown",
-            function(event) {
-
-                if (event.key === "Escape") {
-
-                    yopPubg();
-
-                }
-
-            }
+    const foiz =
+        Number(
+            document.getElementById("minusPercent").value
         );
 
 
-    </script>
+    if (summa > 0) {
+
+        const natija =
+            Math.floor(
+                summa /
+                ((100 + foiz) / 100)
+            );
+
+
+        document.getElementById(
+            "natijaMinus"
+        ).innerText =
+            natija.toLocaleString("uz-UZ")
+            + " so'm";
+
+    }
+
+    else {
+
+        document.getElementById(
+            "natijaMinus"
+        ).innerText =
+            "0 so'm";
+
+    }
+
+}
+
+
+
+/* =========================================================
+   2. FOIZ QO'SHISH
+========================================================= */
+
+function hisoblaPlus() {
+
+    const summa =
+        Number(
+            document.getElementById("inputPlus").value
+        );
+
+
+    const foiz =
+        Number(
+            document.getElementById("plusPercent").value
+        );
+
+
+    if (summa > 0) {
+
+        const natija =
+            summa *
+            (1 + foiz / 100);
+
+
+        document.getElementById(
+            "natijaPlus"
+        ).innerText =
+            Math.round(natija)
+            .toLocaleString("uz-UZ")
+            + " so'm";
+
+    }
+
+    else {
+
+        document.getElementById(
+            "natijaPlus"
+        ).innerText =
+            "0 so'm";
+
+    }
+
+}
+
+
+
+/* =========================================================
+   3. PUBG PAKETLARI
+========================================================= */
+
+const paketlar = [
+
+    {
+        uc: 32400,
+        narx: 4700000
+    },
+
+    {
+        uc: 24300,
+        narx: 3520000
+    },
+
+    {
+        uc: 16200,
+        narx: 2350000
+    },
+
+    {
+        uc: 8100,
+        narx: 1180000
+    },
+
+    {
+        uc: 3850,
+        narx: 590000
+    },
+
+    {
+        uc: 1800,
+        narx: 297000
+    },
+
+    {
+        uc: 660,
+        narx: 120000
+    },
+
+    {
+        uc: 325,
+        narx: 60000
+    },
+
+    {
+        uc: 60,
+        narx: 13000
+    },
+
+    {
+        uc: 30,
+        narx: 7000
+    }
+
+];
+
+
+
+/* =========================================================
+   4. PUL -> UC
+========================================================= */
+
+function hisoblaPul() {
+
+    const pul =
+        parseInt(
+            document.getElementById("inputPul").value
+        );
+
+
+    if (!pul || pul <= 0) {
+
+        document.getElementById(
+            "natijaPul"
+        ).innerText =
+            "Natija chiqadi";
+
+        return;
+
+    }
+
+
+    let qolganPul = pul;
+
+    let jamiUC = 0;
+
+    let natija = "";
+
+
+    for (const paket of paketlar) {
+
+        const soni =
+            Math.floor(
+                qolganPul / paket.narx
+            );
+
+
+        if (soni > 0) {
+
+            natija +=
+                `${paket.uc.toLocaleString("uz-UZ")} UC → ${soni} ta\n`;
+
+
+            qolganPul -=
+                soni * paket.narx;
+
+
+            jamiUC +=
+                soni * paket.uc;
+
+        }
+
+    }
+
+
+    document.getElementById(
+        "natijaPul"
+    ).innerText =
+
+        `Jami UC: ${jamiUC.toLocaleString("uz-UZ")}\n` +
+
+        `Qoldiq: ${qolganPul.toLocaleString("uz-UZ")} so'm\n\n` +
+
+        natija;
+
+}
+
+
+
+/* =========================================================
+   5. UC -> PUL
+========================================================= */
+
+function hisoblaUC() {
+
+    const uc =
+        parseInt(
+            document.getElementById("inputUC").value
+        );
+
+
+    if (!uc || uc <= 0) {
+
+        document.getElementById(
+            "natijaUC"
+        ).innerText =
+            "Natija chiqadi";
+
+        return;
+
+    }
+
+
+    let qolganUC = uc;
+
+    let jamiPul = 0;
+
+    let natija = "";
+
+
+    for (const paket of paketlar) {
+
+        const soni =
+            Math.floor(
+                qolganUC / paket.uc
+            );
+
+
+        if (soni > 0) {
+
+            natija +=
+                `${paket.uc.toLocaleString("uz-UZ")} UC → ${soni} ta\n`;
+
+
+            qolganUC -=
+                soni * paket.uc;
+
+
+            jamiPul +=
+                soni * paket.narx;
+
+        }
+
+    }
+
+
+    document.getElementById(
+        "natijaUC"
+    ).innerText =
+
+        `Jami: ${jamiPul.toLocaleString("uz-UZ")} so'm\n` +
+
+        `Qoldiq UC: ${qolganUC}\n\n` +
+
+        natija;
+
+}
+
+
+
+/* =========================================================
+   6. YOSH MINI OYNANI OCHISH
+========================================================= */
+
+function ochYosh() {
+
+    const modal =
+        document.getElementById("modalYosh");
+
+
+    modal.classList.add("active");
+
+
+    document.getElementById(
+        "modalBirthDate"
+    ).focus();
+
+
+    hisoblaModalYosh();
+
+}
+
+
+
+/* =========================================================
+   7. YOSH MINI OYNANI YOPISH
+========================================================= */
+
+function yopYosh() {
+
+    document
+        .getElementById("modalYosh")
+        .classList.remove("active");
+
+}
+
+
+
+/* =========================================================
+   8. SANANI FORMATLASH
+========================================================= */
+
+function formatSana(input) {
+
+    let qiymat =
+        input.value
+        .replace(/\D/g, "")
+        .substring(0, 8);
+
+
+    let natija = "";
+
+
+    if (qiymat.length > 0) {
+
+        natija +=
+            qiymat.substring(0, 2);
+
+    }
+
+
+    if (qiymat.length > 2) {
+
+        natija +=
+            "." +
+            qiymat.substring(2, 4);
+
+    }
+
+
+    if (qiymat.length > 4) {
+
+        natija +=
+            "." +
+            qiymat.substring(4, 8);
+
+    }
+
+
+    input.value = natija;
+
+
+    hisoblaModalYosh();
+
+}
+
+
+
+/* =========================================================
+   9. OYLARNI QO'SHISH
+========================================================= */
+
+function addMonths(date, months) {
+
+    const result =
+        new Date(date);
+
+
+    const originalDay =
+        result.getDate();
+
+
+    result.setDate(1);
+
+
+    result.setMonth(
+        result.getMonth() + months
+    );
+
+
+    const lastDay =
+        new Date(
+            result.getFullYear(),
+            result.getMonth() + 1,
+            0
+        ).getDate();
+
+
+    result.setDate(
+        Math.min(
+            originalDay,
+            lastDay
+        )
+    );
+
+
+    return result;
+
+}
+
+
+
+/* =========================================================
+   10. YOSHNI HISOBLASH
+========================================================= */
+
+function hisoblaModalYosh() {
+
+    const sanaInput =
+        document.getElementById(
+            "modalBirthDate"
+        );
+
+
+    const vaqtInput =
+        document.getElementById(
+            "modalBirthTime"
+        );
+
+
+    const natija =
+        document.getElementById(
+            "modalNatijaYosh"
+        );
+
+
+    if (!sanaInput || !natija) {
+        return;
+    }
+
+
+    const sana =
+        sanaInput.value.trim();
+
+
+    const vaqt =
+        vaqtInput.value || "00:00";
+
+
+    if (!sana) {
+
+        natija.innerHTML =
+            "Tug‘ilgan sanani kiriting";
+
+        return;
+
+    }
+
+
+    if (sana.length !== 10) {
+
+        natija.innerHTML =
+            "📅 Sana: <b>KK.OO.YYYY</b>";
+
+        return;
+
+    }
+
+
+    const qismlar =
+        sana.split(".");
+
+
+    if (qismlar.length !== 3) {
+
+        natija.innerHTML =
+            "❌ Sana formati noto‘g‘ri";
+
+        return;
+
+    }
+
+
+    const kun =
+        Number(qismlar[0]);
+
+
+    const oy =
+        Number(qismlar[1]);
+
+
+    const yil =
+        Number(qismlar[2]);
+
+
+    const vaqtQismlar =
+        vaqt.split(":");
+
+
+    const soat =
+        Number(vaqtQismlar[0]);
+
+
+    const daqiqa =
+        Number(vaqtQismlar[1]);
+
+
+    /* -----------------------------------------
+       SANA VALIDATSIYASI
+    ----------------------------------------- */
+
+    if (
+        !Number.isInteger(kun) ||
+        !Number.isInteger(oy) ||
+        !Number.isInteger(yil) ||
+
+        yil < 1 ||
+
+        oy < 1 ||
+        oy > 12 ||
+
+        kun < 1 ||
+        kun > 31
+    ) {
+
+        natija.innerHTML =
+            "❌ Sana noto‘g‘ri";
+
+        return;
+
+    }
+
+
+    const tugilgan =
+        new Date(
+            yil,
+            oy - 1,
+            kun,
+            soat,
+            daqiqa,
+            0
+        );
+
+
+    /* JavaScript yaratgan sana
+       bilan kiritilgan sanani tekshiramiz */
+
+    if (
+        tugilgan.getFullYear() !== yil ||
+        tugilgan.getMonth() !== oy - 1 ||
+        tugilgan.getDate() !== kun ||
+        tugilgan.getHours() !== soat ||
+        tugilgan.getMinutes() !== daqiqa
+    ) {
+
+        natija.innerHTML =
+            "❌ Bunday sana mavjud emas";
+
+        return;
+
+    }
+
+
+    const hozir =
+        new Date();
+
+
+    if (tugilgan > hozir) {
+
+        natija.innerHTML =
+            "❌ Kelajakdagi sana bo‘lishi mumkin emas";
+
+        return;
+
+    }
+
+
+    /* =====================================================
+       YILLARNI HISOBLASH
+    ===================================================== */
+
+    let yillar =
+        hozir.getFullYear()
+        - tugilgan.getFullYear();
+
+
+    let boshlanish =
+        new Date(tugilgan);
+
+
+    let yillikSana =
+        new Date(tugilgan);
+
+
+    yillikSana.setFullYear(
+        tugilgan.getFullYear() + yillar
+    );
+
+
+    if (yillikSana > hozir) {
+
+        yillar--;
+
+    }
+
+
+    boshlanish =
+        new Date(tugilgan);
+
+
+    boshlanish.setFullYear(
+        tugilgan.getFullYear() + yillar
+    );
+
+
+    /* =====================================================
+       OYLARNI HISOBLASH
+    ===================================================== */
+
+    let oylar = 0;
+
+
+    while (true) {
+
+        const keyingiOy =
+            addMonths(
+                boshlanish,
+                1
+            );
+
+
+        if (keyingiOy <= hozir) {
+
+            boshlanish =
+                keyingiOy;
+
+            oylar++;
+
+        }
+
+        else {
+
+            break;
+
+        }
+
+    }
+
+
+    /* =====================================================
+       KUN / SOAT / DAQIQA / SONIYA
+    ===================================================== */
+
+    let farq =
+        hozir.getTime()
+        - boshlanish.getTime();
+
+
+    const KUN =
+        24 * 60 * 60 * 1000;
+
+
+    const SOAT =
+        60 * 60 * 1000;
+
+
+    const DAQIQA =
+        60 * 1000;
+
+
+    const SONIYA =
+        1000;
+
+
+    const kunlar =
+        Math.floor(
+            farq / KUN
+        );
+
+
+    farq %= KUN;
+
+
+    const soatlar =
+        Math.floor(
+            farq / SOAT
+        );
+
+
+    farq %= SOAT;
+
+
+    const daqiqalar =
+        Math.floor(
+            farq / DAQIQA
+        );
+
+
+    farq %= DAQIQA;
+
+
+    const soniyalar =
+        Math.floor(
+            farq / SONIYA
+        );
+
+
+    /* =====================================================
+       NATIJANI CHIQARISH
+    ===================================================== */
+
+    natija.innerHTML = `
+
+        <div class="age-main">
+            🎂 ${yillar} yosh
+        </div>
+
+        <div class="age-detail">
+            📅 ${oylar} oy ${kunlar} kun
+        </div>
+
+        <div class="age-time">
+            ⏰ ${soatlar} soat
+            ${daqiqalar} daqiqa
+            ${soniyalar} soniya
+        </div>
+
+    `;
+
+}
+
+
+
+/* =========================================================
+   11. YOSH MINI OYNA TOZALASH
+========================================================= */
+
+function tozalashModalYosh() {
+
+    document.getElementById(
+        "modalBirthDate"
+    ).value = "";
+
+
+    document.getElementById(
+        "modalBirthTime"
+    ).value = "00:00";
+
+
+    document.getElementById(
+        "modalNatijaYosh"
+    ).innerHTML =
+        "Tug‘ilgan sanani kiriting";
+
+}
+
+
+
+/* =========================================================
+   12. HAR SEKUNDDA YOSHNI YANGILASH
+========================================================= */
+
+setInterval(
+
+    function() {
+
+        const modal =
+            document.getElementById(
+                "modalYosh"
+            );
+
+
+        if (
+            modal &&
+            modal.classList.contains("active")
+        ) {
+
+            hisoblaModalYosh();
+
+        }
+
+    },
+
+    1000
+
+);
+
+
+
+/* =========================================================
+   13. YOSH MODALNI TASHQARIDAN YOPISH
+========================================================= */
+
+document.addEventListener(
+
+    "click",
+
+    function(event) {
+
+        const modal =
+            document.getElementById(
+                "modalYosh"
+            );
+
+
+        if (
+            event.target === modal
+        ) {
+
+            yopYosh();
+
+        }
+
+    }
+
+);
+
+
+
+/* =========================================================
+   14. ESC BILAN YOPISH
+========================================================= */
+
+document.addEventListener(
+
+    "keydown",
+
+    function(event) {
+
+        if (
+            event.key === "Escape"
+        ) {
+
+            yopYosh();
+
+        }
+
+    }
+
+);
+
+
+
+/* =========================================================
+   15. UMUMIY TOZALASH
+========================================================= */
+
+function yangilash() {
+
+
+    document.getElementById(
+        "inputMinus"
+    ).value = "";
+
+
+    document.getElementById(
+        "inputPlus"
+    ).value = "";
+
+
+    document.getElementById(
+        "inputPul"
+    ).value = "";
+
+
+    document.getElementById(
+        "inputUC"
+    ).value = "";
+
+
+    document.getElementById(
+        "minusPercent"
+    ).value = "3";
+
+
+    document.getElementById(
+        "plusPercent"
+    ).value = "3";
+
+
+    document.getElementById(
+        "natijaMinus"
+    ).innerText =
+        "0 so'm";
+
+
+    document.getElementById(
+        "natijaPlus"
+    ).innerText =
+        "0 so'm";
+
+
+    document.getElementById(
+        "natijaPul"
+    ).innerText =
+        "Natija chiqadi";
+
+
+    document.getElementById(
+        "natijaUC"
+    ).innerText =
+        "Natija chiqadi";
+
+}
+
+
+
+/* =========================================================
+   16. UZMOBILE
+========================================================= */
+
+function ochUzmobile() {
+
+    window.open(
+
+        "https://uztelecom.uz/uz/jismoniy-shaxslarga/tarif-rejalar/#gsm",
+
+        "_blank"
+
+    );
+
+}
+
+
+
+/* =========================================================
+   17. UCELL
+========================================================= */
+
+function ochUcell() {
+
+    window.open(
+
+        "https://ucell.uz/uz/tariffs",
+
+        "_blank"
+
+    );
+
+}
+
+
+
+/* =========================================================
+   18. BEELINE
+========================================================= */
+
+function ochBeeline() {
+
+    window.open(
+
+        "https://beeline.uz/uz/products/tariffs",
+
+        "_blank"
+
+    );
+
+}
+
+
+
+/* =========================================================
+   19. MOBIUZ
+========================================================= */
+
+function ochMobiuz() {
+
+    window.open(
+
+        "https://mobi.uz/uz/tariff/",
+
+        "_blank"
+
+    );
+
+}
+
+
+</script>
+
 
 </body>
 </html>
